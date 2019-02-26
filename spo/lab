@@ -2,7 +2,7 @@
 phrase1="1. Print the name of the current directory [no arguments]"
 phrase2="2. Change the current directory [path]"
 phrase3="3. Print the content of the current directory [no arguments]"
-phrase4="4. Create symbolic link [path]"
+phrase4="4. Create symbolic link [path][link]"
 phrase5="5. Execute the entered command [command]"
 phrase6="6. Exit the program [no arguments]"
 wait="Waiting for your input..."
