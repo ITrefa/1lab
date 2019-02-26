@@ -26,7 +26,7 @@ case "$Keypress" in
 pwd
 echo "$menu";;
 
-2 ) 
+2 ) echo "Enter a path:"
 read way
 if ! [ -d "$way" ]
 then 
