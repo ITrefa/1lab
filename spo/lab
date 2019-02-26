@@ -47,14 +47,7 @@ echo "$menu";;
 4 ) echo "Enter a path  to file:"
 read way1
 echo "Enter a path to link:"
-read way2
-ln -s "$way1" "$way2" 2>>/home/s225062/spo/lab1_err
-if ! [ -d "$way1" ]
-then 
-echo "Wrong path to file"
-
-fi
-
+ln -s "$way1" "$way2" 
 echo "$menu";;
 
 5 ) echo "Enter a command:"
