@@ -1,0 +1,76 @@
+#!/bin/bash
+phrase1="1. Print the name of the current directory [no arguments]"
+phrase2="2. Change the current directory [path]"
+phrase3="3. Print the content of the current directory [no arguments]"
+phrase4="4. Create symbolic link [path]"
+phrase5="5. Execute the entered command [command]"
+phrase6="6. Exit the program [no arguments]"
+wait="Waiting for your input..."
+
+menu="Choose:
+$phrase1
+$phrase2
+$phrase3
+$phrase4
+$phrase5
+$phrase6
+$wait"
+
+echo "$menu"
+while : 
+read Keypress
+do
+case "$Keypress" in
+
+1 ) 
+pwd
+echo "$menu";;
+
+2 ) 
+read way
+if ! [ -d "$way" ]
+then 
+cd "$way" 2>>/home/s225062/spo/lab1_err
+echo "There is no path with this name, sorry!"
+else
+cd "$way"
+
+fi
+
+
+echo "$menu";;
+
+3 ) echo "The content of the current directory:"
+ls 
+echo "$menu";;
+
+4 ) echo "Enter a path  to file:"
+read way1
+echo "Enter a path to link:"
+read way2
+ln -s "$way1" "$way2" 2>>/home/s225062/spo/lab1_err
+if ! [ -d "$way1" ]
+then 
+echo "Wrong path to file"
+
+fi
+
+echo "$menu";;
+
+5 ) echo "Enter a command:"
+read way
+if hash "$way" 2>>/home/s225062/spo/lab1_err
+then
+$way 
+else
+echo "It is not a command, try something else"
+fi
+
+echo "$menu";;
+
+6 ) exit 0;;
+
+* ) echo "Nope, try something else"
+echo "$menu";;
+esac
+done
