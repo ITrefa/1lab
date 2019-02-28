@@ -17,6 +17,7 @@ $phrase5
 $phrase6
 $wait"
 
+
 #main_part
 
 while : 
@@ -40,11 +41,21 @@ do
 				 echo "Permession denied" >&2
 			fi
 		fi 
-		cd $dir_ch 2>>/home/s225062/spo/spo/lab1_err;;
+		cd $dir_ch 2>>/home/s225062/lab1_err;;
 
 	#print the content  
-	3 ) echo "The content of the current directory:"
-		ls;; 
+	3 ) 
+		ls  2>>/home/s225062/lab1_err
+		path=$(pwd)
+		if ! [ -d "$path" ]
+		then
+			echo "This directory doesn't exist anymore" >&2
+		else
+			if ! [ -r "$path" ] 
+			then
+				echo "Permession denied" >&2
+			fi
+		fi;;
 
 	#create symbolic link
 	4 ) echo "Enter a path to file:"
@@ -56,7 +67,7 @@ do
 	#execute the command
 	5 ) echo "Enter a command:"
 		read command
-		if hash "$command" 2>>/home/s225062/spo/spo/lab1_err
+		if hash "$command" 2>>/home/s225062/lab1_err
 		then
 			$command 
 		else
