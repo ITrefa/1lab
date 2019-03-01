@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+group=$1
+
+for username in 'getent passwd | awk -F: '{print $1}' | sort'
+do
+	if [ 'groups "$username" | egrep "$group" | wc -l' -eq 1 ] 
+	then
+		echo "$username"
+	fi	
