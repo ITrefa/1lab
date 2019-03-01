@@ -2,12 +2,10 @@
 
 group=$1
 
-for username in 'getent passwd | awk -F: '{print $1}' | sort'
+for username in `getent passwd | awk -F: '{print $1}' | sort`
 do
-	if [ 'groups "$username" | egrep "$group" | wc -l' -eq 1 ] 
+	if [ `groups "$username" | egrep "$group" | wc -l` -eq 1 ] 
 	then
 		echo "$username"
-	else
-		echo "There is no user who belongs to this group"
 	fi
 done	
