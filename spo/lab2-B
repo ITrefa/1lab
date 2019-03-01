@@ -7,4 +7,5 @@ do
 	if [ 'groups "$username" | egrep "$group" | wc -l' -eq 1 ] 
 	then
 		echo "$username"
-	fi	
+	fi
+done	
