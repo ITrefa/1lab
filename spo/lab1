@@ -17,6 +17,21 @@ $phrase5
 $phrase6
 $wait"
 
+errorLog=$HOME/lab1_err
+errorLogSize=$(cat $errorLog | wc -c)
+
+function checkErrors {
+currentErrorLogSize=$(cat $errorLog | wc -c)
+
+if [ "$currentErrorLogSize" -gt "$errorLogSize" ]
+then
+echo "1"
+else
+echo "0"
+fi
+
+errorLogSize=$currentErrorLogSize
+}
 
 #main_part
 
@@ -44,8 +59,7 @@ do
 		cd $dir_ch 2>>/home/s225062/lab1_err;;
 
 	#print the content  
-	3 ) 
-		ls  2>>/home/s225062/lab1_err
+	3 ) ls  2>>/home/s225062/lab1_err
 		path=$(pwd)
 		if ! [ -d "$path" ]
 		then
@@ -62,7 +76,12 @@ do
 		read path_to_file
 		echo "Enter a path to link:"
 		read path_to_link
-		ln -s "$path_to_file" "$path_to_link";; 
+		ln  -fs "$path_to_file" "$path_to_link" 2>>/home/s225062/lab1_err
+		resultCheck=$( checkErrors)
+		if [ "$resultCheck" = 1 ]
+		then 
+			echo "Directory doesn't exist or you don't have permession" >&2
+		fi;;
 
 	#execute the command
 	5 ) echo "Enter a command:"
