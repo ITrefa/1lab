@@ -4,7 +4,7 @@ phrase1="1. Print the name of the current directory [no arguments]"
 phrase2="2. Change the current directory [path]"
 phrase3="3. Print the content of the current directory [no arguments]"
 phrase4="4. Create symbolic link [path][link]"
-phrase5="5. Execute the entered command [command]"
+phrase5="5. Execute the entered command [no argument, only a command]"
 phrase6="6. Exit the program [no arguments]"
 wait="Waiting for your input..."
 
@@ -88,7 +88,18 @@ do
 		read command
 		if hash "$command" 2>>/home/s225062/lab1_err
 		then
-			$command 
+			resultCheck=$( checkErrors)
+			if [ "$resultCheck" = 1 ]
+			then
+				 echo "Command cannot be executed" >&2
+			else
+			$command 2>>/home/s225062/lab1_err
+			resultCheck=$( checkErrors) 
+				if [ "$resultCheck" = 1 ] 
+				then
+					echo "This command requires argument, this scrypt can execute only commands without any arguments and keys, sorry for that:(" >&2
+				fi
+			fi 
 		else
 			echo "It is not a command, try something else"
 		fi;;
