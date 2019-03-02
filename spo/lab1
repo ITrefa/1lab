@@ -76,7 +76,7 @@ do
 		read path_to_file
 		echo "Enter a path to link:"
 		read path_to_link
-		ln  -fs "$path_to_file" "$path_to_link" 2>>/home/s225062/lab1_err
+		ln -fs "$path_to_file" "$path_to_link" 2>>/home/s225062/lab1_err
 		resultCheck=$( checkErrors)
 		if [ "$resultCheck" = 1 ]
 		then 
@@ -101,7 +101,7 @@ do
 				fi
 			fi 
 		else
-			echo "It is not a command, try something else"
+			echo "It is not a command, try something else" >&2
 		fi;;
 
 	#quit program
