@@ -25,9 +25,9 @@ currentErrorLogSize=$(cat $errorLog | wc -c)
 
 if [ "$currentErrorLogSize" -gt "$errorLogSize" ]
 then
-echo "1"
+	echo "1"
 else
-echo "0"
+	echo "0"
 fi
 
 errorLogSize=$currentErrorLogSize
